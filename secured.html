@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Step Up Example Application - Common</title>
+    <title>Step Up Example Application - Secured</title>
     <script type="text/javascript" src="KC_URL/auth/js/keycloak.js"></script>
     
     <script type="text/javascript">
@@ -34,10 +34,9 @@
             }
 
             if (keycloak.idTokenParsed.super_user == 'true') {
-                document.getElementById("more-secure-button").style.visibility = 'visible';
-            } else {
                 document.getElementById("more-secure-button").style.visibility = 'hidden';
-            }
+                outputById("This is a secured content", "output-super-user");
+            }            
         }
 
         keycloak = new Keycloak({ realm: 'demo', clientId: 'step-up-client' });
@@ -57,7 +56,6 @@
     <button onclick="output(keycloak.tokenParsed)">Show Access Token</button>
     <button id="more-secure-button" onclick="window.keycloak.login({
         prompt: 'consent', // login
-        redirectUri: 'APP_URL/secured',
         acr : { 
             values: ['aal2'],
             essential: true
@@ -67,9 +65,9 @@
     <button onclick="window.keycloak.updateToken(-1).then(function() { output(keycloak.idTokenParsed); profile() })">Refresh</button>
     <hr/>
     <h2 id="name"></h2>
-    <pre id="user-profile"></pre><!-- User Level -->
-    <pre id="output-super-user"></pre><!-- Super Users Area -->
-    <pre id="output"></pre><!-- Users Area -->    
+    <pre id="output"></pre><!-- Common Users Area -->
+    <pre id="output-super-user"></pre><!-- Common Users Area -->
+    <pre id="user-profile"></pre><!-- Super Users Area -->
 </div>
 
 </body>

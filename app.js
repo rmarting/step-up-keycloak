@@ -1,16 +1,26 @@
-var express = require('express');
-var app = express();
-var stringReplace = require('string-replace-middleware');
+const express = require('express');
+const stringReplace = require('string-replace-middleware');
 
-var KC_URL = process.env.KC_URL || "http://localhost:8180";
+const KC_URL = process.env.KC_URL || "http://localhost:8180";
+const APP_PORT = process.env.APP_PORT || "8280"; 
+const APP_URL = process.env.APP_URL || "http://localhost:" + APP_PORT;
+
+const app = express();
 
 app.use(stringReplace({
-   'KC_URL': KC_URL
+   'KC_URL': KC_URL,
+   'APP_URL': APP_URL
 }));
-app.use(express.static('.'))
+app.use(express.static(__dirname));
 
 app.get('/', function(req, res) {
-    res.render('index.html');
+    res.sendFile(__dirname + "/index.html");
 });
 
-app.listen(8080);
+app.get('/secured', function(req, res) {
+    res.sendFile(__dirname + "/secured.html");
+});
+
+app.listen(APP_PORT, () => {
+    console.log("Application started and Listening on port " + APP_PORT);
+});
