@@ -86,3 +86,4 @@ be able to login into the secured area.
 
 * [ACR to Level of Authentication (LoA) Mapping](https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/7.6/html-single/server_administration_guide/index#mapping-acr-to-loa-realm)
 * [Creating a browser login flow with step-up mechanism](https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/7.6/html-single/server_administration_guide/index#step-up-flow)
+* [Parameters forwarding](https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/7.6/html-single/securing_applications_and_services_guide/index#params_forwarding)
